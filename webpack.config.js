@@ -3,11 +3,21 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',// 开发环境
+    devtool: 'inline-source-map',
     entry: {
         index: './src/index.js',
-        print: './src/print.js',
+        another: './src/another-module.js',
     },
-    devtool: 'inline-source-map',
+    output: {
+        filename: '[name].bundle.js',
+        path: path.resolve(__dirname, 'dist'),
+        clean: true,
+    },
+    optimization: {
+        splitChunks: {
+            chunks: 'all',
+        },
+    },
     plugins: [
         new HtmlWebpackPlugin({
             title: 'Output Management',
@@ -16,11 +26,6 @@ module.exports = {
     ],
     devServer: {
         contentBase: './dist',
-    },
-    output: {
-        filename: '[name].bundle.js',
-        path: path.resolve(__dirname, 'dist'),
-        clean: true,
     },
     module: {
         rules: [
