@@ -1,0 +1,23 @@
+.icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+
+.hello {
+    width: 200px;
+    height: 50px;
+    color: red;
+    background: url('./a01.jpeg');
+    overflow: hidden;
+    margin: 20px;
+}
+
+.myImg {
+    width: 200px;
+    height: 160px;
+    overflow: hidden;
+}
+
