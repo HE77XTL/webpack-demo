@@ -8,17 +8,19 @@ import './iconfont/iconfont.js'
 import printMe from './print.js';
 
 
-function component() {
-    const element = document.createElement('div');
-    const btn = document.createElement('button');
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    element.classList.add('hello');
+function getComponent() {
+    return import('lodash').then(({default: _}) => {
+        const element = document.createElement('div');
+        const btn = document.createElement('button');
+        element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+        element.classList.add('hello');
 
-    btn.innerHTML = 'Click me and check the console!';
-    btn.onclick = printMe;
+        btn.innerHTML = 'Click me and check the console!';
+        btn.onclick = printMe;
 
-    element.appendChild(btn);
-    return element;
+        element.appendChild(btn);
+        return element;
+    }).catch((error) => 'An error occurred while loading the component');
 }
 
 function componentImg() {
@@ -29,14 +31,22 @@ function componentImg() {
     element.appendChild(myIcon);
     return element;
 }
+
 function componentFont() {
     const element = document.createElement('div');
-    element.innerHTML = _.join(['Hello', 'myFont'], ' ');
+    element.innerHTML = 'ssss';
     element.classList.add('myFont');
     return element;
 }
 
 
-document.body.appendChild(component());
+getComponent().then((component) => {
+    document.body.appendChild(component);
+});
+
+
 document.body.appendChild(componentImg());
 document.body.appendChild(componentFont());
+
+
+
